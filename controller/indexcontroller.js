@@ -11,10 +11,7 @@ module.exports.adminPage = (req, res) =>{
 module.exports.adminlogout = (req, res, next) => {
     req.logout(function(err){
         if(err) return next(err);
-        req.session.destroy(() => {
-            res.clearCookie('connect.sid'); // 🚨 cookie clear karna
-            res.redirect('/admin');
-        });
+        res.redirect('/admin'); // redirect to login page
     });
 }
 module.exports.IntroPage = (req, res) =>{
