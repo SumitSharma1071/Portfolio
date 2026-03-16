@@ -1,0 +1,32 @@
+<%layout('/layout/boilerplate.ejs')%>
+
+<style>
+    .login-btn{
+        margin-bottom: 15rem;
+    }
+    .login-div input{
+        background-color: transparent;
+    }
+     .login-div input::-ms-value{
+      color: white;
+    }
+    .login-div input:focus{
+        background-color: transparent;
+        color: white;
+    }
+    .login-div input::placeholder{
+       color: white;
+    }
+</style>
+  
+    <div class="row mt-5">
+        <div class="col-10 offset-1 col-sm-10 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3 login-div">
+            <form action="/admin" method="POST" novalidate class="needs-validation">
+                <label for="username" class="form-label mt-5" style="color: white;">Username:</label>
+                <input type="text" name="email" placeholder="email" class="form-control mt-2">
+                <label for="pass" class="form-label mt-3" style="color: white;">Password</label>
+                <input type="password" name="password" class="form-control mt-2" id="pass" placeholder="password">
+                <button class="btn btn-success mt-5 w-100 login-btn">login</button>
+            </form>
+        </div>
+    </div>

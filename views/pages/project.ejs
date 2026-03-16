@@ -11,24 +11,21 @@
                             <h5 class="card-title" style="color: rgb(255, 153, 0) !important;"><b><%= project.title %></b></h5>
                             <p class="card-text" style="color: white !important;"><%= project.description %></p>
                             <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
-                            <p class="card-link" style="color: white;">GitHub Link : <a href=""><%= project.gitLink %></a></p>
+                            <p class="card-link" style="color: white;">GitHub Link : <a href="<%= project.gitLink %>"><%= project.gitLink %></a></p>
+                        
+                            <div class="d-flex flex-wrap justify-content-between mt-3">
+                                <!-- Edit Button -->
+                                <form action="/main/project/<%=project.id%>/edit" method="get" class="me-2 mb-2">
+                                    <button class="btn btn-light w-100">Edit</button>
+                                </form>
+
+                                <!-- Delete Button -->
+                                <form action="/main/project/<%=project.id%>/delete?_method=DELETE" method="post" class="mb-2">
+                                    <button class="btn btn-light w-100">Delete</button>
+                                </form>
+                            </div>
                         </div>
                         
-                        <div class="row">
-
-                        <div class="col-2">
-                        <form action="/main/project/<%=project.id%>/edit" method="get">
-                            <button class="btn btn-light" style="margin : 2rem;">Edit</button>
-                        </form>
-                        </div>
-
-                        <div class="col-2">
-                        <form action="/main/project/<%=project.id%>/delete?_method=DELETE" method="post">
-                            <button class="btn btn-light" style="margin-top: 2rem;" >Delete</button>
-                        </form>
-                        </div>
-
-                        </div>
                 </div>
                 <% } %>
                 
