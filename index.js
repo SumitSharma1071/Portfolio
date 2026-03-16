@@ -1,16 +1,13 @@
-if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').config();
-}
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo').default;
 
 const ejs = require('ejs');
 let path = require('path');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
-
-
 // Authentication and Autherization
 const session = require('express-session');
 const passport = require('passport');
@@ -31,6 +28,33 @@ main()
     console.log('Error Connecting to MongoDB:', err);
 });
 
+if(process.env.NODE_ENV === 'production'){
+    app.set('trust proxy', 1); // trust first proxy (Render)
+}
+
+const store = MongoStore.create({
+    mongoUrl : process.env.MONGO_URL,
+    crypto : {
+        secret : process.env.MY_SECRET,
+    },
+    touchAfter : 24 * 3600
+});
+
+const sessionObject = {
+    store, 
+    secret : process.env.MY_SECRET,
+    resave : false,
+    saveUninitialized : false,
+    cookie : {
+        expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge : 7 * 24 * 60 * 60 * 1000,
+        httpOnly : true,
+    }
+};
+
+
+app.use(session(sessionObject));
+
 
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
@@ -41,12 +65,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.engine('ejs', ejsMate);
 
-// Session
-app.use(session({
-    secret : "mysupersecret",
-    resave : false,
-    saveUninitialized : false
-}));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
