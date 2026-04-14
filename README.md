@@ -3,7 +3,7 @@ Link : https://portfolio-zg8a.onrender.com
 This portfolio is designed to highlight my development skills, projects, and technical expertise. It is fully responsive and built with a focus on clean UI and performance.
 
 Tech Stack : 
-1.HTMl
+1.HTMl/n
 2.CSS
 3.JavaScript
 4.Node.js
