@@ -61,7 +61,7 @@ Future Improvements :
 Getting Started
 Clone the repository:
 
-bash git clone https://github.com/yourusername/portfolio.git
+bash git clone https://github.com/SumitSharma1071/Portfolio.git
 
 bash cd portfolio
 
